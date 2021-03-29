@@ -1,4 +1,8 @@
+from django import forms
 from django.db import models
+from django.db.models.signals import pre_save
+
+from Finance.utils import unique_slug_generator
 
 
 class LedgerQuerySet(models.query.QuerySet):
@@ -33,7 +37,7 @@ class GeneralLedger(models.Model):
     slug_number = models.SlugField(blank=True, unique=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     item_name = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.CharField(blank=True, widget=forms.Textarea(attrs={'class': 'span12', 'id': 'description', 'name': 'description',}))
     partner = models.CharField(max_length=120)
     invoice = models.CharField(max_length=255)
     transaction_ref_number = models.CharField(max_length=255)
@@ -42,9 +46,8 @@ class GeneralLedger(models.Model):
     date_due = models.DateTimeField()
     debit = models.DecimalField(decimal_places=2, max_digits=20, default=0)
     credit = models.DecimalField(decimal_places=2, max_digits=20, default=0)
-    currency = models.CharField(max_length=255),
     tax_amount = models.DecimalField(decimal_places=2, max_digits=20, default=0)
-    paye = models.CharField(max_length=255)
+    paye_amt = models.CharField(max_length=255)
     invoice_amount = models.DecimalField(decimal_places=2, max_digits=20, default=0)
     balanced = models.BooleanField(default=True)
 
@@ -54,7 +57,7 @@ class GeneralLedger(models.Model):
         super().__init__(*args, **kwargs)
 
     def get_absolute_url(self):
-        return "/GeneralLedger/{slug}/".format(slug=self.slug)
+        return "/GeneralLedger/{slug}/".format(slug=self.slug_number)
         # return reverse("products:detail", kwargs={"slug": self.slug})
 
     def __str__(self):
@@ -70,3 +73,11 @@ class GeneralLedger(models.Model):
     # def get_downloads(self):
     #    qs = self.productfile_set.all()
     #    return qs
+
+
+def newGL_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+
+pre_save.connect(newGL_pre_save_receiver, sender=GeneralLedger)

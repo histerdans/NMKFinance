@@ -1,38 +1,46 @@
 from django.contrib.auth.decorators import login_required
+
 from django.shortcuts import render
 
+from .forms import FormNewGL
+from .models import GeneralLedger
 
-def register_page_t(request):
+
+@login_required(login_url='accounts:login')
+def add_new_GL(request):
     template_name = "form_newGL.html"
+    form = FormNewGL()
     if request.method == 'POST':
 
-        form = RegisterForm(request.POST)
+        form = FormNewGL(request.POST)
         if form.is_valid():
-
-            first_name = request.POST.get('Firstname', '')
-            last_name = request.POST.get('Lastname', '')
-            email = request.POST.get('Email', '')
-            username = request.POST.get('Username', '')
-            phone = request.POST.get('Phone', '')
-            idno = request.POST.get('idno', '')
-            password1 = request.POST.get('Password1', '')
-            password2 = request.POST.get('Password2', '')
-            user_obj = User(first_name=first_name,
-                            last_name=last_name,
-                            email=email,
-                            username=username,
-                            phone=phone,
-                            idno=idno,
-                            password1=password1,
-                            password2=password2, )
+            slug_number = request.POST.get('slug_number', '')
+            item_name = request.POST.get('item_name', '')
+            description = request.POST.get('description', '')
+            partner = request.POST.get('partner', '')
+            invoice = request.POST.get('invoice', '')
+            invoice_amount = request.POST.get('invoice_amount', '')
+            transaction_ref_number = request.POST.get('transaction_ref_number', '')
+            account_name = request.POST.get('account_name', '')
+            account_number = request.POST.get('account_number', '')
+            debit = request.POST.get('debit', '')
+            credit = request.POST.get('credit', '')
+            paye_amt = request.POST.get('paye_amt', '')
+            user_obj = GeneralLedger(slug_number=slug_number,
+                                     item_name=item_name,
+                                     description=description,
+                                     partner=partner,
+                                     invoice=invoice,
+                                     invoice_amount=invoice_amount,
+                                     transaction_ref_number=transaction_ref_number,
+                                     account_name=account_name,
+                                     account_number=account_number,
+                                     debit=debit,
+                                     credit=credit,
+                                     paye_amt=paye_amt, )
             user_obj.save()
-            print('SUCCESS USER ADDED')
-            # return HttpResponseRedirect(reverse('login'))
-            # return JsonResponse(reverse('login'),{"message": "Thank you for your submission"})
-
-
-        else:
-            form = RegisterForm()
+            print('SUCCESS GL ADDED')
+    else:
         return render(request, template_name, {'form': form, })
 
 
@@ -68,3 +76,5 @@ def dashboard_page(request):
     context = {}
     template = "base.html"
     return render(request, template, context)
+
+

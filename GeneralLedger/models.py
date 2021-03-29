@@ -37,7 +37,7 @@ class GeneralLedger(models.Model):
     slug_number = models.SlugField(blank=True, unique=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     item_name = models.CharField(max_length=255)
-    description = models.CharField(blank=True, widget=forms.Textarea(attrs={'class': 'span12', 'id': 'description', 'name': 'description',}))
+    description = models.TextField(blank=False,)
     partner = models.CharField(max_length=120)
     invoice = models.CharField(max_length=255)
     transaction_ref_number = models.CharField(max_length=255)

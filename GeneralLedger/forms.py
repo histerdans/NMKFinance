@@ -17,7 +17,7 @@ class FormNewGL(ModelForm):
         self.fields['description'].widget.attrs.update(
             {'type': 'text', 'class': 'span8', 'id': 'description', 'name': 'description', })
         self.fields['partner'].widget.attrs.update(
-            {'type': 'email', 'class': 'span8', 'id': 'partner', 'name': 'partner', })
+            {'type': 'email', 'class': 'span10', 'id': 'partner', 'name': 'partner', })
         self.fields['invoice'].widget.attrs.update(
             {'type': 'text', 'class': 'span6', 'id': 'invoice', 'name': 'invoice', })
         self.fields['transaction_ref_number'].widget.attrs.update(

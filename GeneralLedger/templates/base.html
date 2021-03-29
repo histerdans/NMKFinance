@@ -477,5 +477,19 @@ jQuery.validator.addMethod("Museumemail", function (value, element) {
 		
 	})
 </script>
+<script type="text/javascript">
+	$(document).ready(function(){
+  $('#add-gl-form').click(function() {
+    TESTCURRENCY = $('#value').val().toString().match(/(?=[\s\d])(?:\s\.|\d+(?:[.]\d+)*)/gmi);
+    if (TESTCURRENCY.length <= 1) {
+      $('#valueshow').val(
+        parseFloat(TESTCURRENCY.toString().match(/^\d+(?:\.\d{0,2})?/))
+      );
+    } else {
+      $('#valueshow').val('Invalid a value!');
+    }
+  });
+});
+</script>
 	</body>
 	</html>

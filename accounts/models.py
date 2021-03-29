@@ -5,7 +5,7 @@ from django.db import models
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, username, email,  password=None, is_admin=False, is_staff=False,
+    def create_user(self, first_name, last_name, username, email, password=None, is_admin=False, is_staff=False,
                     national_id=None, phone=None):
         if not email:
             raise ValueError("Users must have an email address")
@@ -18,6 +18,8 @@ class UserManager(BaseUserManager):
         if not phone:
             raise ValueError("Users must have a Phone No. ")
         user_obj = self.model(
+            first_name=first_name,
+            last_name=last_name,
             email=self.normalize_email(email),
             phone=phone,
             username=username,
@@ -30,8 +32,11 @@ class UserManager(BaseUserManager):
         user_obj.save(using=self._db)
         return user_obj
 
-    def create_superuser(self, username, email, national_id, phone, password=None, is_admin=True, is_staff=True, ):
+    def create_superuser(self, first_name, last_name, username, email, national_id, phone, password=None, is_admin=True,
+                         is_staff=True, ):
         user_obj = self.create_user(
+            first_name=first_name,
+            last_name=last_name,
             username=username,
             email=self.normalize_email(email),
             password=password,
@@ -62,7 +67,7 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'username'  # username
     # USERNAME_FIELD and password are required by default
-    REQUIRED_FIELDS = ['email', 'national_id', 'phone']  # ['full_name'] #python manage.py createsuperuser
+    REQUIRED_FIELDS = ['email', 'national_id', 'phone', 'first_name', 'last_name']  # ['full_name'] #python manage.py createsuperuser
 
     objects = UserManager()
 

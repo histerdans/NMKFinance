@@ -15,7 +15,7 @@
 <div class="row-fluid">
 	<div class="span12">
 		<div class="widget-box">
-			<form class="form-horizontal" id="validation-form" action="{% url 'GeneralLedger:newGL' %}" method="POST" style="display: block;" novalidate="novalidate">{% csrf_token %}
+			<form class="form-horizontal" id="add-gl-form" action="{% url 'GeneralLedger:newGL' %}" method="POST" style="display: block;" novalidate="novalidate" enctype="multipart/form-data">{% csrf_token %}
 				
 
 				<div class="hr hr-dotted"></div>
@@ -177,6 +177,7 @@
 						</div>
 					</div>
 					<div class="hr hr-dotted"></div>
+					<div class="spfinance-24"></div>
 					<label class="span12">
 							<label class="text-error">{{form.errors}}</label>
 							{% for message in messages %}
@@ -184,7 +185,13 @@
 							{% endfor %}
 
 						</label>
-					<div class="hr hr-dotted"></div><div class="spfinance-24"></div>
+					<div class="hr hr-dotted"></div>
+<label>
+	<input type="text" value="12345.67890" id="value">
+<input type="button" id="test" value="CLICK">
+<input type="text" value="" id="valueshow">
+</label>
+
 					<div class="form-actions">
 
 

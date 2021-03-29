@@ -13,21 +13,22 @@ class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs.update(
-            {'type': 'text', 'class': 'span12', 'id': 'Firstname', 'name': 'Firstname', 'placeholder': 'Firstname'})
+            {'type': 'text', 'class': 'span12', 'id': 'first_name', 'name': 'first_name', 'placeholder': 'Firstname'})
         self.fields['last_name'].widget.attrs.update(
-            {'type': 'text', 'class': 'span12', 'id': 'Lastname', 'name': 'Lastname', 'placeholder': 'Lastname'})
+            {'type': 'text', 'class': 'span12', 'id': 'last_name', 'name': 'last_name', 'placeholder': 'Lastname'})
         self.fields['email'].widget.attrs.update(
-            {'type': 'email', 'class': 'span12', 'id': 'Email', 'name': 'Email', 'placeholder': 'Email'})
+            {'type': 'email', 'class': 'span12', 'id': 'email', 'name': 'email', 'placeholder': 'Email'})
         self.fields['username'].widget.attrs.update(
-            {'type': 'text', 'class': 'span12', 'id': 'Username', 'name': 'Username', 'placeholder': 'Username'})
+            {'type': 'text', 'class': 'span12', 'id': 'username', 'name': 'username', 'placeholder': 'Username'})
         self.fields['phone'].widget.attrs.update(
-            {'type': 'text', 'class': 'span12', 'id': 'Phone', 'name': 'Phone', 'placeholder': 'Phone'})
+            {'type': 'text', 'class': 'span12', 'id': 'phone', 'name': 'phone', 'placeholder': 'Phone'})
         self.fields['national_id'].widget.attrs.update(
-            {'type': 'text', 'class': 'span12', 'id': 'idno', 'name': 'idno', 'placeholder': 'National ID No.'})
+            {'type': 'text', 'class': 'span12', 'id': 'national_id', 'name': 'national_id', 'placeholder': 'National '
+                                                                                                           'ID No.'})
         self.fields['password1'].widget.attrs.update(
-            {'type': 'password', 'class': 'span12', 'id': 'Password1', 'name': 'Password1', 'placeholder': 'Password'})
+            {'type': 'password', 'class': 'span12', 'id': 'password1', 'name': 'password1', 'placeholder': 'Password'})
         self.fields['password2'].widget.attrs.update(
-            {'type': 'password', 'class': 'span12', 'id': 'Password2', 'name': 'Password2',
+            {'type': 'password', 'class': 'span12', 'password2': 'password2', 'name': 'Password2',
              'placeholder': 'Confirm Password'})
 
 

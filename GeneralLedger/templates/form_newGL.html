@@ -20,10 +20,17 @@
 
 				<div class="hr hr-dotted"></div>
 
-				<div class="hr hr-solid"></div>
-		
 				<div class="hr hr-dotted"></div>
-				
+				<div class="control-group">
+					<label class="control-label" for="slug_number">Number:</label>
+
+					<div class="controls">
+						<span class="span12">
+							<input class="span6" disabled="T" id="slug_number" name="slug_number" type="text">
+						</span>
+					</div>
+				</div>
+				<div class="hr hr-dotted"></div>
 				<div class="hr hr-dotted"></div>
 				<div class="control-group">
 					<label class="control-label" for="item_name">Item Name:</label>
@@ -170,8 +177,19 @@
 						</div>
 					</div>
 					<div class="hr hr-dotted"></div>
-					<div class="hr hr-dotted"></div>
+					<label class="span12">
+							<label class="text-error">{{form.errors}}</label>
+							{% for message in messages %}
+							<label class="text-info">{{message}}</label>
+							{% endfor %}
+
+						</label>
+					<div class="hr hr-dotted"></div><div class="spfinance-24"></div>
 					<div class="form-actions">
+
+
+
+						<div class="clearfix">
 						<button class="btn btn-info btn-next" type="submit" data-last="Finish ">
 							<i class="icon-ok bigger-110"></i>
 							Submit
@@ -182,6 +200,7 @@
 							<i class="icon-undo bigger-110"></i>
 							Reset
 						</button>
+						</div>
 					</div>
 				</form>
 

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Login Page&copy;NMK Finance</title>
+	{%load static %}
+	<meta name="description" content="User login page" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!--basic styles-->
+
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'css/bootstrap-responsive.min.css' %}" rel="stylesheet" />
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+
+		
+		<!--fonts-->
+
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+		<!--finance styles-->
+
+		<link rel="stylesheet" href="{% static 'css/finance.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/finance-responsive.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/finance-skins.min.css' %}" />
+
+	
+
+		<!--inline styles related to this page-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+
+		<body class="login-layout">
+			<div class="main-container container-fluid">
+				<div class="main-content">
+					<div class="row-fluid">
+						<div class="span12">
+							<div class="login-container">
+								<div class="row-fluid">
+									<div class="center">
+										<h1>
+											<i class="icon-dollar green"></i>
+											<span class="red">NMK</span>
+											<span class="white">Financial Application</span>
+										</h1>
+										<h4 class="blue">&copy;National Museum of Kenya</h4>
+									</div>
+								</div>
+
+								<div class="spfinance-6"></div>
+
+								<div class="row-fluid">
+									<div class="position-relative">
+
+
+								<!--PAGE CONTENT BEGINS-->
+
+								{% block content %}
+								{% endblock %}
+
+
+
+							<!--PAGE CONTENT ENDS-->
+
+
+
+									</div><!--/position-relative-->
+								</div>
+							</div>
+						</div><!--/.span-->
+					</div><!--/.row-fluid-->
+				</div>
+			</div><!--/.main-container-->
+
+			<!--basic scripts-->
+
+			
+			
+				<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js '%}"></script>
+
+				<!--<![endif]-->
+
+		<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js '%}"></script>
+<![endif]-->
+
+<!--[if !IE]>-->
+
+<script type="text/javascript">
+	window.jQuery || document.write("<script src='{% static 'js/jquery-2.0.3.min.js '%} '%}>"+"<"+"/script>");
+</script>
+
+<!--<![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='{% static 'js/jquery-1.10.2.min.js '%}'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+	if("ontouchend" in document) document.write("<script src='{% static 'js/jquery.mobile.custom.min.js '%}'>"+"<"+"/script>");
+</script>
+<script src="{% static 'js/bootstrap.min.js '%}"></script>
+
+<!--page specific plugin scripts-->
+<script src="{% static 'js/fuelux/fuelux.wizard.min.js' %}"></script>
+<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+<script src="{% static 'js/additional-methods.min.js' %}"></script>
+<script src="{% static 'js/bootbox.min.js' %}"></script>
+<script src="{% static 'js/jquery.maskedinput.min.js' %}"></script>
+<script src="{% static 'js/select2.min.js' %}"></script>
+<!--finance scripts-->
+
+<script src="{% static 'js/finance-elements.min.js '%}"></script>
+<script src="{% static 'js/finance.min.js '%}"></script>
+
+<!--inline scripts related to this page-->
+
+<script type="text/javascript">
+	function show_box(id) {
+		$('.widget-box.visible').removeClass('visible');
+		$('#'+id).addClass('visible');
+	}
+</script>
+<script type="text/javascript">
+	$(function() {
+	$('#login-form').validate({
+			errorElement: 'span',
+			errorClass: 'help-inline',
+			focusInvalid: false,
+			rules: {
+				Password: {
+					required: true,
+				},
+				Username: {
+					required: true
+				},
+			messages: {
+			},
+
+					
+	}})
+})
+</script>
+<script type="text/javascript">
+	$(function() {
+
+
+
+		
+		$.mask.definitions['~']='[+-]';
+		$('#Phone').mask('(999) 999-9999');
+
+		jQuery.validator.addMethod("Phone", function (value, element) {
+			return this.optional(element) || /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
+		}, "Enter a valid phone number.");
+jQuery.validator.addMethod("Museumemail", function (value, element) {
+			return this.optional(element) || /^.+@museums.or.ke$/.test(value);
+		}, "Only @museums.or.ke email addresses are allowed.");
+
+		$('#register-form').validate({
+			errorElement: 'span',
+			errorClass: 'help-inline',
+			focusInvalid: false,
+			rules: {
+				Email: {
+					required: true,
+					Museumemail:true
+				},
+				Password1: {
+					required: true,
+					minlength: 5
+				},
+				Password2: {
+					required: true,
+					minlength: 5,
+					equalTo: "#password"
+				},
+				Username: {
+					required: true
+				},
+				Phone: {
+					required: true,
+					Phone: 'required'
+				},
+				Lastname: {
+					required: true
+				},
+				idno: {
+					required: true
+				},
+				Firstname: {
+					required: true
+				},
+				agree: {
+					required: true
+				},
+			
+			messages: {
+				Email: {
+					required: "Please provide a valid email.",
+					Email: "Please provide a valid email."
+				},
+				Password: {
+					required: "Please specify a password.",
+					minlength: "Please specify a secure password."
+				},
+				agree: "Please accept our policy"
+			},
+
+
+
+					invalidHandler: function (event, validator) { //display error alert on form submit   
+						$('.alert-error', $('.login-form')).show();
+					},
+
+					highlight: function (e) {
+						$(e).closest('.control-group').removeClass('info').addClass('error');
+					},
+
+					success: function (e) {
+						$(e).closest('.control-group').removeClass('error').addClass('info');
+						$(e).remove();
+					},
+
+					errorPlfinancement: function (error, element) {
+						if(element.is(':checkbox') || element.is(':radio')) {
+							var controls = element.closest('.controls');
+							if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+							else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+						}
+						else if(element.is('.select2')) {
+							error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+						}
+						else if(element.is('.chzn-select')) {
+							error.insertAfter(element.siblings('[class*="chzn-container"]:eq(0)'));
+						}
+						else error.insertAfter(element);
+					},
+
+					submitHandler: function (form) {
+					},
+					invalidHandler: function (form) {
+					}
+				});
+
+		
+		
+	}})
+</script>
+</body>
+</html>

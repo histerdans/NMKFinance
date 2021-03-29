@@ -1,0 +1,122 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+
+{%load static %}
+
+
+
+
+<!--PAGE CONTENT BEGINS-->
+
+
+
+
+<div id="login-box" class="login-box visible widget-box no-border">
+	<div class="widget-body">
+		<div class="widget-main">
+			<h4 class="header blue lighter bigger">
+				<i class="icon-key green bigger-180"></i>
+				Please Enter Your Information
+			</h4>
+
+			<div class="spfinance-6"></div>
+
+			<form id="login-form" action="{% url 'accounts:login' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+				<fieldset>
+
+					<label>
+						<span class="block input-icon input-icon-right">
+							<input type="text" class="span12" placeholder="Username" id="Username" name="Username" />
+							<i class="icon-user"></i>
+						</span>
+					</label>
+
+					<label>
+						<span class="block input-icon input-icon-right">
+							<input type="password" class="span12" placeholder="Password" id="Password" name="Password" />
+							<i class="icon-lock"></i>
+						</span>
+					</label>
+					<label class="span12">
+						{{form.errors}}
+						<label class="text-error">{{form.errors}}</label>
+						{% for message in messages %}
+						<label class="text-info">{{message}}</label>
+						{% endfor %}
+
+					</label>
+
+
+					<div class="spfinance"></div>
+
+					<div class="clearfix">
+						<label class="inline">
+							<input type="checkbox" />
+							<span class="lbl"> Remember Me</span>
+						</label>
+
+						<button type="submit" class="width-35 pull-right btn btn-small btn-primary">
+							<i class="icon-key"></i>
+							Login
+						</button>
+					</div>
+
+					<div class="spfinance-4"></div>
+				</fieldset>
+			</form>
+
+			<div class="social-or-login center">
+				<span class="bigger-110">Or Login Using</span>
+			</div>
+
+			<div class="social-login center">
+				<a class="btn btn-primary">
+					<i class="icon-ffinancebook"></i>
+				</a>
+
+				<a class="btn btn-info">
+					<i class="icon-twitter"></i>
+				</a>
+
+				<a class="btn btn-danger">
+					<i class="icon-google-plus"></i>
+				</a>
+			</div>
+		</div><!--/widget-main-->
+
+		<div class="toolbar clearfix">
+			<div>
+				<a href="#" onclick="show_box('forgot-box'); return false;" class="forgot-password-link">
+					<i class="icon-arrow-left"></i>
+					I forgot my password
+				</a>
+			</div>
+
+			<div>
+				<a href="{% url 'accounts:register' %}" class="user-signup-link">
+					I want to register
+					<i class="icon-arrow-right"></i>
+				</a>
+			</div>
+		</div>
+	</div><!--/widget-body-->
+</div><!--/login-box-->
+
+
+
+<!--PAGE CONTENT ENDS-->
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,139 @@
+{% extends 'admin_base.html' %}
+
+{% block content %}
+
+
+{%load static %}
+
+
+<!--PAGE CONTENT BEGINS-->
+
+
+
+<div id="signup-box" class="signup-box visible widget-box no-border">
+	<div class="widget-body">
+		<div class="widget-main">
+			<h4 class="header green lighter bigger">
+				<i class="icon-group blue"></i>
+				New User Registration
+			</h4>
+
+			<div class="spfinance-6"></div>
+			<p> Enter your details to begin: </p>
+
+			<form id="register-form" autocomplete="false" action="{% url 'accounts:register' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+				<fieldset>
+					<label>
+						<span class="block input-icon input-icon-right">
+							{{form.first_name}}
+							<i class="icon-user"></i></span>
+
+						</label>
+						<label>
+							<span class="block input-icon input-icon-right">
+								{{form.last_name}}
+								<i class="icon-user"></i>
+							</span>
+						</label>
+						<label>
+							<span class="block input-icon input-icon-right">
+								{{form.email}}
+								<i class="icon-envelope"></i>
+							</span>
+						</label>
+						<label>
+							<span class="block input-icon input-icon-right">
+								{{form.username}}
+								<i class="icon-user"></i>
+							</span>
+						</label>
+						<label>
+							<span class="block input-icon input-icon-right">
+								{{form.phone}}
+								<i class="icon-key"></i>
+							</span>
+						</label>
+						<label>
+							<span class="block input-icon input-icon-right">
+								{{form.national_id}}
+								<i class="icon-key"></i>
+							</span>
+						</label>
+
+						<label>
+							<span class="block input-icon input-icon-right">
+								{{form.password1}}
+								<i class="icon-lock"></i>
+							</span>
+						</label>
+
+						<label>
+							<span class="block input-icon input-icon-right">
+								{{form.password2}}
+								<i class="icon-lock"></i>
+							</span>
+						</label>
+
+						<label>
+							<input type="checkbox" name="agree" id="agree" />
+							<span class="lbl">
+								I accept the
+								<a href="#">User Agreement</a>
+							</span>
+						</label>
+						<label class="span12">
+							<label class="text-error">{{form.errors}}</label>
+							{% for message in messages %}
+							<label class="text-info">{{message}}</label>
+							{% endfor %}
+
+						</label>
+
+
+
+
+						<div class="spfinance-24"></div>
+
+						<div class="clearfix">
+							<button type="reset" onclick="return true;"  class="width-30 pull-left btn btn-small">
+								<i class="icon-refresh"></i>
+								Reset
+							</button>
+
+							<button onclick="return true;" type="submit" class="width-65 pull-right btn btn-small btn-success">
+								Register
+								<i class="icon-arrow-right icon-on-right"></i>
+							</button>
+						</div>
+
+					</fieldset>
+				</form>
+			</div>
+
+			<div class="toolbar center">
+				<a href="{% url 'accounts:login' %}" class="back-to-login-link">
+					<i class="icon-arrow-left"></i>
+					Back to login
+				</a>
+			</div>
+		</div><!--/widget-body-->
+	</div><!--/signup-box-->
+
+
+	<!--PAGE CONTENT ENDS-->
+
+
+	{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

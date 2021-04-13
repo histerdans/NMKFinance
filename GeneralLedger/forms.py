@@ -8,14 +8,14 @@ class FormNewGL(ModelForm):
         model = GeneralLedger
         fields = (
             'slug_number', 'item_name', 'description', 'partner', 'invoice', 'transaction_ref_number', 'account_name',
-            'account_number', 'debit', 'credit', 'date_due', 'tax_amount', 'paye_amt', 'invoice_amount',)
+            'account_number', 'debit', 'credit', 'date_due', 'tax_amount', 'paye_amt', 'invoice_amount', 'currency',)
 
     def __init__(self, *args, **kwargs):
         super(FormNewGL, self).__init__(*args, **kwargs)
         self.fields["item_name"].widget.attrs.update(
             {'type': 'text', 'class': 'span10', 'id': 'item_name', 'name': 'item_name', })
         self.fields['description'].widget.attrs.update(
-            {'type': 'text', 'class': 'span8', 'id': 'description', 'name': 'description', })
+            {'type': 'text', 'class': 'span8 TextField', 'id': 'description', 'name': 'description', })
         self.fields['partner'].widget.attrs.update(
             {'type': 'email', 'class': 'span10', 'id': 'partner', 'name': 'partner', })
         self.fields['invoice'].widget.attrs.update(
@@ -27,14 +27,17 @@ class FormNewGL(ModelForm):
         self.fields['account_number'].widget.attrs.update(
             {'type': 'text', 'class': 'span6', 'id': 'account_number', 'name': 'account_number'})
         self.fields['debit'].widget.attrs.update(
-            {'type': 'text', 'class': 'span4', 'id': 'debit', 'name': 'debit'})
+            {'type': 'number', 'class': 'span4 money', 'id': 'debit', 'name': 'debit'})
         self.fields['credit'].widget.attrs.update(
-            {'type': 'text', 'class': 'span4', 'id': 'credit', 'name': 'credit', })
+            {'type': 'text', 'class': 'span4 money', 'id': 'credit', 'name': 'credit', })
         self.fields['date_due'].widget.attrs.update(
-            {'type': 'text', 'class': 'span4', 'id': 'date_due', 'name': 'date_due', })
+            {'type': 'text', 'class': 'span4 date-picker', 'id': 'date_due', 'name': 'date_due',
+             'data-date-format': 'dd-mm-yyyy', })
         self.fields['tax_amount'].widget.attrs.update(
             {'type': 'text', 'class': 'span4', 'id': 'tax_amount', 'name': 'tax_amount', })
         self.fields['paye_amt'].widget.attrs.update(
-            {'type': 'text', 'class': 'span4', 'id': 'paye_amt', 'name': 'paye_amt', })
+            {'type': 'text', 'class': 'span4 money', 'id': 'paye_amt', 'name': 'paye_amt', })
         self.fields['invoice_amount'].widget.attrs.update(
-            {'type': 'text', 'class': 'span4', 'id': 'invoice_amount', 'name': 'invoice_amount'})
+            {'type': 'text', 'class': 'span4 money', 'id': 'invoice_amount', 'name': 'invoice_amount'})
+        self.fields['currency'].widget.attrs.update(
+            {'type': 'text', 'class': 'span4 money', 'id': 'currency', 'name': 'currency'})

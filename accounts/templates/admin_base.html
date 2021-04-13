@@ -13,96 +13,84 @@
 	<link href="{% static 'css/bootstrap-responsive.min.css' %}" rel="stylesheet" />
 	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
 
-		
-		<!--fonts-->
+	
+	<!--fonts-->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
 
-		<!--finance styles-->
 
-		<link rel="stylesheet" href="{% static 'css/finance.min.css' %}" />
-		<link rel="stylesheet" href="{% static 'css/finance-responsive.min.css' %}" />
-		<link rel="stylesheet" href="{% static 'css/finance-skins.min.css' %}" />
+	<!--finance styles-->
+
+	<link rel="stylesheet" href="{% static 'css/select2.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/finance.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/finance-responsive.min.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/finance-skins.min.css' %}" />
 
 	
 
-		<!--inline styles related to this page-->
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+	<!--inline styles related to this page-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 
-		<body class="login-layout">
-			<div class="main-container container-fluid">
-				<div class="main-content">
-					<div class="row-fluid">
-						<div class="span12">
-							<div class="login-container">
-								<div class="row-fluid">
-									<div class="center">
-										<h1>
-											<i class="icon-dollar green"></i>
-											<span class="red">NMK</span>
-											<span class="white">Financial Application</span>
-										</h1>
-										<h4 class="blue">&copy;National Museum of Kenya</h4>
-									</div>
-								</div>
-
-								<div class="spfinance-6"></div>
-
-								<div class="row-fluid">
-									<div class="position-relative">
-
-
-								<!--PAGE CONTENT BEGINS-->
-
-								{% block content %}
-								{% endblock %}
-
-
-
-							<!--PAGE CONTENT ENDS-->
-
-
-
-									</div><!--/position-relative-->
+	<body class="login-layout">
+		<div class="main-container container-fluid">
+			<div class="main-content">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="login-container">
+							<div class="row-fluid">
+								<div class="center">
+									<h1>
+										<i class="icon-dollar green"></i>
+										<span class="red">NMK</span>
+										<span class="white">Financial Application</span>
+									</h1>
+									<h4 class="blue">&copy;National Museum of Kenya</h4>
 								</div>
 							</div>
-						</div><!--/.span-->
-					</div><!--/.row-fluid-->
-				</div>
-			</div><!--/.main-container-->
 
-			<!--basic scripts-->
+							<div class="spfinance-6"></div>
 
-			
-			
-				<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js '%}"></script>
+							<div class="row-fluid">
+								<div class="position-relative">
 
-				<!--<![endif]-->
 
-		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js '%}"></script>
-<![endif]-->
+									<!--PAGE CONTENT BEGINS-->
 
-<!--[if !IE]>-->
+									{% block content %}
+									{% endblock %}
+
+
+
+									<!--PAGE CONTENT ENDS-->
+
+
+
+								</div><!--/position-relative-->
+							</div>
+						</div>
+					</div><!--/.span-->
+				</div><!--/.row-fluid-->
+			</div>
+		</div><!--/.main-container-->
+
+		<!--basic scripts-->
+
+
 
 <script type="text/javascript">
-	window.jQuery || document.write("<script src='{% static 'js/jquery-2.0.3.min.js '%} '%}>"+"<"+"/script>");
+	window.jQuery || document.write("<script src='{% static 'js/jquery-2.0.3.min.js' %}'>"+"<"+"/script>");
 </script>
 
-<!--<![endif]-->
-
-		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='{% static 'js/jquery-1.10.2.min.js '%}'>"+"<"+"/script>");
-</script>
-<![endif]-->
 
 <script type="text/javascript">
-	if("ontouchend" in document) document.write("<script src='{% static 'js/jquery.mobile.custom.min.js '%}'>"+"<"+"/script>");
+	if("ontouchend" in document) document.write("<script src='{% static 'js/jquery.mobile.custom.min.js' %}'>"+"<"+"/script>");
 </script>
-<script src="{% static 'js/bootstrap.min.js '%}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 <!--page specific plugin scripts-->
+
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.bootstrap.js' %}"></script>
+
 <script src="{% static 'js/fuelux/fuelux.wizard.min.js' %}"></script>
 <script src="{% static 'js/jquery.validate.min.js' %}"></script>
 <script src="{% static 'js/additional-methods.min.js' %}"></script>
@@ -110,9 +98,8 @@
 <script src="{% static 'js/jquery.maskedinput.min.js' %}"></script>
 <script src="{% static 'js/select2.min.js' %}"></script>
 <!--finance scripts-->
-
-<script src="{% static 'js/finance-elements.min.js '%}"></script>
-<script src="{% static 'js/finance.min.js '%}"></script>
+<script src="{% static 'js/finance-elements.min.js' %}"></script>
+<script src="{% static 'js/finance.min.js' %}"></script>
 
 <!--inline scripts related to this page-->
 
@@ -124,7 +111,7 @@
 </script>
 <script type="text/javascript">
 	$(function() {
-	$('#login-form').validate({
+		$('#login-form').validate({
 			errorElement: 'span',
 			errorClass: 'help-inline',
 			focusInvalid: false,
@@ -135,12 +122,30 @@
 				Username: {
 					required: true
 				},
-			messages: {
-			},
-
+				messages: {
+					Username: {
+						required: "Please Enter a Correct Username.",
+					},
 					
-	}})
-})
+					Password: {
+						required: "Please Enter a Correct password.",
+					},
+				invalidHandler: function (event, validator) { //display error alert on form submit   
+					$('.alert-error', $('#login-form')).show();
+				},
+
+				highlight: function (e) {
+					$(e).closest('.control-group').removeClass('info').addClass('error');
+				},
+
+				success: function (e) {
+					$(e).closest('.control-group').removeClass('error').addClass('info');
+					$(e).remove();
+				},
+
+				
+			}})
+	})
 </script>
 <script type="text/javascript">
 	$(function() {
@@ -154,7 +159,7 @@
 		jQuery.validator.addMethod("Phone", function (value, element) {
 			return this.optional(element) || /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
 		}, "Enter a valid phone number.");
-jQuery.validator.addMethod("Museumemail", function (value, element) {
+		jQuery.validator.addMethod("Museumemail", function (value, element) {
 			return this.optional(element) || /^.+@museums.or.ke$/.test(value);
 		}, "Only @museums.or.ke email addresses are allowed.");
 
@@ -195,18 +200,22 @@ jQuery.validator.addMethod("Museumemail", function (value, element) {
 				agree: {
 					required: true
 				},
-			
-			messages: {
-				Email: {
-					required: "Please provide a valid email.",
-					Email: "Please provide a valid email."
+				
+				messages: {
+					Username: {
+						required: "Please Enter a Correct Username.",
+						Email: "Please Enter a Correct Username."
+					},
+					Email: {
+						required: "Please provide a valid email.",
+						Email: "Please provide a valid email."
+					},
+					Password1: {
+						required: "Please Enter a Correct password.",
+						minlength: "Please specify a secure password."
+					},
+					agree: "Please accept our policy"
 				},
-				Password: {
-					required: "Please specify a password.",
-					minlength: "Please specify a secure password."
-				},
-				agree: "Please accept our policy"
-			},
 
 
 

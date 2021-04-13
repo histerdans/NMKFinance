@@ -30,24 +30,16 @@ def pg_connect(self):
 def add_new_GL(request):
     template_name = "form_newGL.html"
     form = FormNewGL()
-    try:
-
-        if pg_connect():
-
-            if request.method == 'POST':
-
-                form = FormNewGL(request.POST)
-                if form.is_valid():
-                    form.save()
-                    messages.success(request, 'GL ADDED')
-                    print('SUCCESS GL ADDED')
-                context = {'form': form}
-                return render(request, template_name, context)
-            else:
-                context = {'form': form, }
-                return render(request, template_name, context)
-    except(Exception, pgdb.Error) as error:
-        print(str(error))
+    if request.method == 'POST':
+        form = FormNewGL(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'GL ADDED')
+            print('SUCCESS GL ADDED')
+            context = {'form': form}
+            return render(request, template_name, context)
+        else:
+            print('Error Occurred')
     context = {'form': form, }
     return render(request, template_name, context)
 

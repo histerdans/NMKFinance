@@ -2,6 +2,7 @@ from django import forms
 from django.db import models
 from django.db.models.signals import pre_save
 
+from Finance import settings
 from Finance.utils import unique_slug_generator
 
 
@@ -34,23 +35,28 @@ class LedgerManager(models.Manager):
 
 
 class GeneralLedger(models.Model):
+    options = (
+        ('Kshs', 'Shillings'),
+        ('Dollars', 'Dollars'),
+        ('Pounds', 'Pounds'),
+    )
     slug_number = models.SlugField(blank=True, unique=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     item_name = models.CharField(max_length=255)
-    description = models.TextField(blank=False,)
+    description = models.TextField(blank=False, )
     partner = models.CharField(max_length=120)
     invoice = models.CharField(max_length=255)
     transaction_ref_number = models.CharField(max_length=255)
     account_name = models.CharField(max_length=255)
     account_number = models.CharField(max_length=255)
-    date_due = models.DateTimeField()
-    debit = models.DecimalField(decimal_places=2, max_digits=20,)
-    credit = models.DecimalField(decimal_places=2, max_digits=20,)
-    tax_amount = models.DecimalField(decimal_places=2, max_digits=20, )
-    paye_amt = models.CharField(max_length=255)
-    invoice_amount = models.DecimalField(decimal_places=2, max_digits=20, )
+    date_due = models.CharField(max_length=25)
+    debit = models.DecimalField(max_digits=25 , decimal_places=2)
+    credit = models.DecimalField(max_digits=25 , decimal_places=2)
+    tax_amount = models.DecimalField(max_digits=25, decimal_places=2)
+    paye_amt = models.DecimalField(max_digits=25, decimal_places=2)
+    invoice_amount = models.DecimalField(max_digits=25 , decimal_places=2)
     balanced = models.BooleanField(default=True)
-
+    currency = models.CharField(max_length=25, choices=options, default='Kshs')
     objects = LedgerManager()
 
     def __init__(self, *args, **kwargs):
@@ -76,8 +82,8 @@ class GeneralLedger(models.Model):
 
 
 def newGL_pre_save_receiver(sender, instance, *args, **kwargs):
-    if not instance.slug:
-        instance.slug = unique_slug_generator(instance)
+    if not instance.slug_number:
+        instance.slug_number = unique_slug_generator(instance)
 
 
 pre_save.connect(newGL_pre_save_receiver, sender=GeneralLedger)

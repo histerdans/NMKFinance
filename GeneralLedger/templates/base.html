@@ -13,30 +13,30 @@
 	<link href="{% static 'css/bootstrap-responsive.min.css' %}" rel="stylesheet" />
 	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
 
-		<!--[if IE 7]>
-		  <link rel="stylesheet" href="{% static 'css/font-awesome-ie7.min.css' %}" />
-		<![endif]-->
+	
 
 		<!--page specific plugin styles-->
 
+		<link rel="stylesheet" href="{% static 'css/jquery-ui-1.10.3.custom.min.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/chosen.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/datepicker.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/bootstrap-timepicker.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/daterangepicker.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/colorpicker.css' %}" />
+
 		<!--fonts-->
 
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
-
 		<!--finance styles-->
-		<link rel="stylesheet" href="{% static 'css/select2.css' %}" />
+
 		<link rel="stylesheet" href="{% static 'css/finance.min.css' %}" />
 		<link rel="stylesheet" href="{% static 'css/finance-responsive.min.css' %}" />
 		<link rel="stylesheet" href="{% static 'css/finance-skins.min.css' %}" />
 
-		<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="{% static 'css/finance-ie.min.css' %}" />
-		<![endif]-->
 
 		<!--inline styles related to this page-->
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 
-		<body>
+		<body class="skin-2">
 			<div class="navbar">
 				<div class="navbar-inner">
 					<div class="container-fluid">
@@ -72,8 +72,8 @@
 
 									<li class="divider"></li>
 
-									<li>
-										<a href="{% url 'accounts:logout' %}">
+									<li id="logout">
+										<a>
 											<i class="icon-off"></i>
 											Logout
 										</a>
@@ -92,7 +92,35 @@
 				</a>
 
 				<div class="sidebar" id="sidebar">
-					
+					<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+						<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+							<button class="btn btn-small btn-success">
+								<i class="icon-signal"></i>
+							</button>
+
+							<button class="btn btn-small btn-info">
+								<i class="icon-pencil"></i>
+							</button>
+
+							<button class="btn btn-small btn-warning">
+								<i class="icon-group"></i>
+							</button>
+
+							<button class="btn btn-small btn-danger">
+								<i class="icon-cogs"></i>
+							</button>
+						</div>
+
+						<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+							<span class="btn btn-success"></span>
+
+							<span class="btn btn-info"></span>
+
+							<span class="btn btn-warning"></span>
+
+							<span class="btn btn-danger"></span>
+						</div>
+					</div><!--#sidebar-shortcuts-->
 
 					<ul class="nav nav-list">
 						<li class="active">
@@ -117,6 +145,24 @@
 									<a href="{% url 'GeneralLedger:newGL' %}">
 										<i class="icon-double-angle-right"></i>
 										Add New
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										Payments
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										PAYE
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										Invoices/Certificates
 									</a>
 								</li>
 
@@ -145,7 +191,7 @@
 
 							<ul class="submenu">
 								<li>
-									<a href="#">
+									<a href="{% url 'AssetsRegistry:newAR' %}">
 										<i class="icon-double-angle-right"></i>
 										Add New
 									</a>
@@ -266,47 +312,33 @@
 
 		<!--basic scripts-->
 
-		<!--[if !IE]>-->
-
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-		<!--<![endif]-->
-
-		<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js' %}"></script>
-<![endif]-->
-
-<!--[if !IE]>-->
+		
 
 <script type="text/javascript">
 	window.jQuery || document.write("<script src='{% static 'js/jquery-2.0.3.min.js' %}'>"+"<"+"/script>");
 </script>
 
-<!--<![endif]-->
-
-		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='{% static 'js/jquery-1.10.2.min.js' %}'>"+"<"+"/script>");
-</script>
-<![endif]-->
-
 <script type="text/javascript">
 	if("ontouchend" in document) document.write("<script src='{% static 'js/jquery.mobile.custom.min.js' %}'>"+"<"+"/script>");
 </script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
-<!--page specific plugin scripts-->
-
-<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'js/jquery.dataTables.bootstrap.js' %}"></script>
-
-<script src="{% static 'js/fuelux/fuelux.wizard.min.js' %}"></script>
-<script src="{% static 'js/jquery.validate.min.js' %}"></script>
-<script src="{% static 'js/additional-methods.min.js' %}"></script>
-<script src="{% static 'js/bootbox.min.js' %}"></script>
+<script src="{% static 'js/jquery-ui-1.10.3.custom.min.js' %}"></script>
+<script src="{% static 'js/jquery.ui.touch-punch.min.js' %}"></script>
+<script src="{% static 'js/chosen.jquery.min.js' %}"></script>
+<script src="{% static 'js/fuelux/fuelux.spinner.min.js' %}"></script>
+<script src="{% static 'js/date-time/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/date-time/bootstrap-timepicker.min.js' %}"></script>
+<script src="{% static 'js/date-time/moment.min.js' %}"></script>
+<script src="{% static 'js/date-time/daterangepicker.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-colorpicker.min.js' %}"></script>
+<script src="{% static 'js/jquery.knob.min.js' %}"></script>
+<script src="{% static 'js/jquery.autosize-min.js' %}"></script>
+<script src="{% static 'js/jquery.inputlimiter.1.3.1.min.js' %}"></script>
 <script src="{% static 'js/jquery.maskedinput.min.js' %}"></script>
-<script src="{% static 'js/select2.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-tag.min.js' %}"></script>
+<script src="{% static 'js/bootbox.min.js' %}"></script>
 <!--finance scripts-->
+
 <script src="{% static 'js/finance-elements.min.js' %}"></script>
 <script src="{% static 'js/finance.min.js' %}"></script>
 
@@ -314,182 +346,31 @@
 
 <script type="text/javascript">
 	$(function() {
-		var oTable1 = $('#sample-table-2').dataTable( {
-			"aoColumns": [
-			{ "bSortable": false },
-			null, null,null, null, null,
-			{ "bSortable": false }
-			] } );
 
-
-		$('table th input:checkbox').on('click' , function(){
-			var that = this;
-			$(this).closest('table').find('tr > td:first-child input:checkbox')
-			.each(function(){
-				this.checked = that.checked;
-				$(this).closest('tr').toggleClass('selected');
+		
+		$('.money').mask("#,##0.00", {reverse: true});
+		$('.date-picker').datepicker().next().on(finance.click_event, function(){
+			$(this).prev().focus();
+		});
+		$('#id-date-range-picker-1').daterangepicker().prev().on(finance.click_event, function(){
+			$(this).next().focus();
+		});
+		$("#logout").on(finance.click_event, function() {
+			bootbox.confirm("Are you sure you want to logout?", function(result) {
+				if(result) {
+					bootbox.alert("You are sure!");
+					var newLocation = '{% url 'accounts:logout' %}';
+					window.location = newLocation;
+					
+				}
 			});
-
 		});
 
+	});
 
-		$('[data-rel="tooltip"]').tooltip({plfinancement: tooltip_plfinancement});
-		function tooltip_plfinancement(context, source) {
-			var $source = $(source);
-			var $parent = $source.closest('table')
-			var off1 = $parent.offset();
-			var w1 = $parent.width();
-			
-			var off2 = $source.offset();
-			var w2 = $source.width();
-			
-			if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-			return 'left';
-		}
-	})
 </script>
 
 
-
-<!--inline scripts related to this page-->
-
-<script type="text/javascript">
-	$(function() {
-
 		
-		$.mask.definitions['~']='[+-]';
-		$('#phone').mask('(999) 999-9999');
-
-		jQuery.validator.addMethod("phone", function (value, element) {
-			return this.optional(element) || /^\(\d{3}\) \d{3}\-\d{4}( x\d{1,6})?$/.test(value);
-		}, "Enter a valid phone number.");
-jQuery.validator.addMethod("Museumemail", function (value, element) {
-			return this.optional(element) || /^.+@museums.or.ke$/.test(value);
-		}, "Only @museums.or.ke email addresses are allowed.");
-
-		$('#validation-form').validate({
-			errorElement: 'span',
-			errorClass: 'help-inline',
-			focusInvalid: false,
-			rules: {
-				item_name: {
-					required: true,
-				},
-				description: {
-					required: true,
-					minlength: 5
-				},
-				partner: {
-					required: true,
-					minlength: 5,
-				},
-				invoice: {
-					required: true
-				},
-				transaction_ref_number: {
-					required: true,
-				},
-				account_name: {
-					required: true,
-				},
-				account_number: {
-					required: true
-				},
-				date_due: {
-					required: true
-				},
-				debit: {
-					required: true,
-				},
-				credit: {
-					required: true,
-				},
-				currency: {
-					required: true,
-				},
-				tax_amount: {
-					required: true
-				},
-				paye: {
-					required: true,
-				},
-				url: {
-					required: true,
-					url: true
-				},
-				comment: {
-					required: true
-				},
-				state: {
-					required: true
-				},
-			},
-
-			messages: {
-				email: {
-					required: "Please provide a valid email.",
-					email: "Please provide a valid email."
-				},
-				password: {
-					required: "Please specify a password.",
-					minlength: "Please specify a secure password."
-				},
-				subscription: "Please choose at least one option",
-				gender: "Please choose gender",
-				agree: "Please accept our policy"
-			},
-
-					invalidHandler: function (event, validator) { //display error alert on form submit   
-						$('.alert-error', $('.login-form')).show();
-					},
-
-					highlight: function (e) {
-						$(e).closest('.control-group').removeClass('info').addClass('error');
-					},
-
-					success: function (e) {
-						$(e).closest('.control-group').removeClass('error').addClass('info');
-						$(e).remove();
-					},
-
-					errorPlacement: function (error, element) {
-						if(element.is(':checkbox') || element.is(':radio')) {
-							var controls = element.closest('.controls');
-							if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-							else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-						}
-						else if(element.is('.select2')) {
-							error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-						}
-						else if(element.is('.chzn-select')) {
-							error.insertAfter(element.siblings('[class*="chzn-container"]:eq(0)'));
-						}
-						else error.insertAfter(element);
-					},
-
-					submitHandler: function (form) {
-					},
-					invalidHandler: function (form) {
-					}
-				});
-
-		
-		
-	})
-</script>
-<script type="text/javascript">
-	$(document).ready(function(){
-  $('#add-gl-form').click(function() {
-    TESTCURRENCY = $('#value').val().toString().match(/(?=[\s\d])(?:\s\.|\d+(?:[.]\d+)*)/gmi);
-    if (TESTCURRENCY.length <= 1) {
-      $('#valueshow').val(
-        parseFloat(TESTCURRENCY.toString().match(/^\d+(?:\.\d{0,2})?/))
-      );
-    } else {
-      $('#valueshow').val('Invalid a value!');
-    }
-  });
-});
-</script>
 	</body>
 	</html>

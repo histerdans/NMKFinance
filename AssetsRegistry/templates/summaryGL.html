@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{%load static %}
+
+
+<!--PAGE CONTENT BEGINS-->
+
+
+{% for item in objs %}
+    <tr> 
+         <td>{{ item.field1 }}</td>
+         <td>{{ item.field2 }}</td>
+         <td>{{ item.field3 }}</td>
+         <td>{{ item.field4 }}</td>
+    </tr>
+       {% endfor %}
+$('.money').mask("#,##0.00", {reverse: true});
+
+<!--PAGE CONTENT ENDS-->
+
+
+{% endblock %}

@@ -23,7 +23,7 @@
 
 			<form id="register-form" autocomplete="false" action="{% url 'accounts:register' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
 				<fieldset>
-					<label 
+					<label >
 						<span class="block input-icon input-icon-right">
 							{{form.first_name}}
 							<i class="icon-user"></i></span>
@@ -81,14 +81,16 @@
 								<a href="#">User Agreement</a>
 							</span>
 						</label>
-						<label class="span12">
-							<label class="text-error">{{form.errors}}</label>
+						<label class="control-group">
+							
 							{% for message in messages %}
-							<label class="text-info">{{message}}</label>
+							<div class="alert alert-error">
+								{{form.errors}}
+								{{message}}
+								<br />
+							</div>
 							{% endfor %}
-
 						</label>
-
 
 
 

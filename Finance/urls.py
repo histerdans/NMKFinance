@@ -20,8 +20,10 @@ from .views import home_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
     path('', home_page, name='home'),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('GeneralLedger/', include('GeneralLedger.urls', namespace='GeneralLedger')),
+    path('AssetsRegistry/', include('AssetsRegistry.urls', namespace='AssetsRegistry')),
     # path('', include('GeneralLedger.urls'))
 ]

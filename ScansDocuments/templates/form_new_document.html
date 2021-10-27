@@ -16,7 +16,7 @@
 <div class="row-fluid">
 	<div class="span12">
 		<fieldset>
-			<form class="form-horizontal" id="addGLForm" action="" data-items-url="{% url 'GeneralLedger:ajax_load_items' %}"  method="POST" style="display: block;" novalidate="novalidate" enctype="multipart/form-data">{% csrf_token %}
+			<form class="form-horizontal" id="addDocumentForm" action="" doc_data-items-url="{% url 'Document:ajax_load_items_doc' %}" method="POST" style="display: block;" novalidate="novalidate" enctype="multipart/form-data">{% csrf_token %}
 
 				<div class="hr hr-dotted"></div>
 				<div class="control-group">
@@ -42,7 +42,7 @@
 
 					<div class="controls">
 						<span class="span12">
-							{{form.item_category}}
+							{{form.document_item_category}}
 						</span>
 					</div>
 				</div>
@@ -51,25 +51,25 @@
 
 					<div class="controls">
 						<span class="span12">
-							{{form.item_name}}
+							{{form.document_item_name}}
 						</span>
 					</div>
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="notes">Notes:</label>
+			<div class="control-group">
+					<label class="control-label" for="document_file">File Upload:</label>
 
-					<div class="controls">
-						<span class="span12">
-							{{form.notes}}
-						</span>
+					<div class="controls offset-3 span4">
+						{{form.document_file}}
+
+
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="Amount">Amount:</label>
+					<label class="control-label" for="description">Descriptios:</label>
 
 					<div class="controls">
 						<span class="span12">
-							{{form.Amount}}
+							{{form.description}}
 						</span>
 					</div>
 				</div>
@@ -102,7 +102,6 @@
 				</div>
 
 			</form>
-	
 <div class="row-fluid">
 	<h3 class="header smaller lighter blue">jQuery dataTables</h3>
 	<div class="table-header">
@@ -142,30 +141,26 @@
 				</td>
 				<td >{{obj.YearNow}}</td>
 				<td >{{obj.QuarterNow}}</td>
-				<td >{{obj.item_category}}</td>
-				<td   >{{obj.item_name}}</td>
-				<td >{{obj.notes}}</td>
-
-
-				<td class="badge badge-inverse ">
-					<span class="money">{{obj.Amount}}</span>
-				</td>
+				<td >{{obj.document_item_category}}</td>
+				<td   >{{obj.document_item_name}}</td>
+				<td >{{obj.description}}</td>
+				<td >{{obj.document_file}}</td>
 				<td class="td-actions">
 					<div class="hidden-phone visible-desktop action-buttons">
-						<a class="blue" href="#">
+						<a class="blue" href="{% url 'Document:pdf_viewer_page' obj.id%}">
 							<i class="icon-zoom-in bigger-130"></i>
 						</a>
 
-						<a class="green" href="{% url 'GeneralLedger:update_item_url' obj.id %}">
+						<a class="green" href="{% url 'Document:update_item_url' obj.id %}">
 							<i class="icon-pencil bigger-130"></i>
 						</a>
 
-						<a class="red" href="{% url 'GeneralLedger:delete_item_url' obj.id %}">
+						<a class="red" href="{% url 'Document:delete_item_url' obj.id %}">
 							<i class="icon-trash bigger-130"></i>
 						</a>
 					</div>
 
-					<div class="hidden-desktop visible-phone">
+					<div class="hidden-desktop visible-phone action-buttons">
 						<div class="inline position-relative">
 							<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
 								<i class="icon-caret-down icon-only bigger-120"></i>
@@ -173,7 +168,7 @@
 
 							<ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-close">
 								<li>
-									<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+									<a href="{% url 'Document:pdf_viewer_page' obj.id%}" class="tooltip-info" data-rel="tooltip" title="View">
 										<span class="blue">
 											<i class="icon-zoom-in bigger-120"></i>
 										</span>
@@ -181,7 +176,7 @@
 								</li>
 
 								<li>
-									<a href="{% url 'GeneralLedger:update_item_url' obj.id %}" class="tooltip-success" data-rel="tooltip" title="Edit">
+									<a href="{% url 'Document:update_item_url' obj.id %}" class="tooltip-success" data-rel="tooltip" title="Edit">
 										<span class="green">
 											<i class="icon-edit bigger-120"></i>
 										</span>
@@ -189,7 +184,7 @@
 								</li>
 
 								<li>
-									<a href="{% url 'GeneralLedger:delete_item_url' obj.id %}" class="tooltip-error" data-rel="tooltip" title="Delete">
+									<a href="{% url 'Document:delete_item_url' obj.id %}" class="tooltip-error" data-rel="tooltip" title="Delete">
 										<span class="red">
 											<i class="icon-trash bigger-120"></i>
 										</span>
@@ -205,7 +200,9 @@
 		{% endif %}
 	</table>
 </div>
-<li class="num">Totals:{{amt}}</li>
+									
+
+
 </fieldset><!--/widget-body-->
 </div>
 </div>

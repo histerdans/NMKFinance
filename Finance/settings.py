@@ -24,7 +24,7 @@ SECRET_KEY = 'cv!5erxve+30^tj%yrc2*ni_f1b0zhnk644kbdsd!4s-m2=6ya'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 # Application definition
 
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'FinancialStatement',
     'accounts',
     'rest_framework',
+    'django.contrib.humanize',
+    'ScansDocuments',
 ]
 
 MIDDLEWARE = [
@@ -65,13 +67,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'Finance.wsgi.application'
-UTH_USER_MODEL = 'accounts.User'  # changes the built-in user model to ours
 LOGIN_URL = '/login/'
 LOGIN_URL_REDIRECT = '/'
 LOGOUT_URL = '/logout/'
@@ -140,3 +142,9 @@ REST_FRAMEWORK = {
 }
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+USE_THOUSAND_SEPARATOR = True
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

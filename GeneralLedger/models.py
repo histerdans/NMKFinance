@@ -1,8 +1,9 @@
-from django import forms
+from unicodedata import decimal
+
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import pre_save
 
-from Finance import settings
 from Finance.utils import unique_slug_generator
 
 
@@ -24,8 +25,8 @@ class LedgerManager(models.Manager):
     def all(self):
         return self.get_queryset()
 
-    def get_by_id(self, id):
-        qs = self.get_queryset().filter(id=id)  # Product.objects == self.get_queryset()
+    def get_by_id(self, pk):
+        qs = self.get_queryset().filter(id=pk)  # Product.objects == self.get_queryset()
         if qs.count() == 1:
             return qs.first()
         return None
@@ -34,36 +35,43 @@ class LedgerManager(models.Manager):
         return self.get_queryset().search(query)
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=130)
+    objects = LedgerManager()
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name
+
+
+class Item(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    name = models.CharField(max_length=130)
+    objects = LedgerManager()
+
+    def __str__(self):
+        return self.name
+
+
 class GeneralLedger(models.Model):
-    options = (
-        ('Kshs', 'Shillings'),
-        ('Dollars', 'Dollars'),
-        ('Pounds', 'Pounds'),
-    )
     slug_number = models.SlugField(blank=True, unique=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    item_name = models.CharField(max_length=255)
-    description = models.TextField(blank=False, )
-    partner = models.CharField(max_length=120)
-    invoice = models.CharField(max_length=255)
-    transaction_ref_number = models.CharField(max_length=255)
-    account_name = models.CharField(max_length=255)
-    account_number = models.CharField(max_length=255)
-    date_due = models.CharField(max_length=25)
-    debit = models.DecimalField(max_digits=25 , decimal_places=2)
-    credit = models.DecimalField(max_digits=25 , decimal_places=2)
-    tax_amount = models.DecimalField(max_digits=25, decimal_places=2)
-    paye_amt = models.DecimalField(max_digits=25, decimal_places=2)
-    invoice_amount = models.DecimalField(max_digits=25 , decimal_places=2)
-    balanced = models.BooleanField(default=True)
-    currency = models.CharField(max_length=25, choices=options, default='Kshs')
+    item_category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    item_name = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
+    notes = models.TextField(blank=True, max_length=1250)
+    Amount = models.DecimalField(decimal_places=2, max_digits=20, default=0.00)
+    YearNow = models.CharField(max_length=25, default='2023/2024')
+    QuarterNow = models.CharField(max_length=25, default='Q1')
+
     objects = LedgerManager()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
     def get_absolute_url(self):
-        return "/GeneralLedger/{slug}/".format(slug=self.slug_number)
+        return "/item-{slug}/".format(slug=self.slug_number)
         # return reverse("products:detail", kwargs={"slug": self.slug})
 
     def __str__(self):
@@ -75,10 +83,6 @@ class GeneralLedger(models.Model):
     @property
     def name(self):
         return self.item_name
-
-    # def get_downloads(self):
-    #    qs = self.productfile_set.all()
-    #    return qs
 
 
 def newGL_pre_save_receiver(sender, instance, *args, **kwargs):

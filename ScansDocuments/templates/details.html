@@ -1,0 +1,37 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+{%load static %}
+<div class="row-fluid">
+    <div class="span12">
+      
+    </div><!--#nav-search-->
+    <fieldset>
+        {% if documents %}
+        <ul>
+            {% for document in documents %}
+            <li><a href="{{ document.document_file.url }}">{{ document.document_file.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No documents.</p>
+
+
+        <!-- Upload form. Note enctype attribute! -->
+        <form action="{% url 'Document:pdf_viewer_page' documents.id%}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.document_file.label_tag }} {{ form.document_file.help_text }}</p>
+            <p>
+                {{ form.document_file.errors }}
+                {{ form.document_file }}
+            </p>
+            <p><input type="submit" value="Upload" /></p>
+        </form>{% endif %}
+    </fieldset><!--/widget-body-->
+</div>
+</div>
+<!--PAGE CONTENT ENDS-->
+{% endblock %}}

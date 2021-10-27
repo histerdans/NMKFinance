@@ -1,0 +1,15 @@
+def export_pdf_view():
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; attachment;data' + str(datetime.datetime.now()) + '.pdf'
+
+    html_string = render_to_string(
+        'pdf_output.html', {'expenses': [], 'total': 0})
+    html = HTML(string=html_string)
+    result = html.write_pdf()
+
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        output.write(result)
+        output.flush()
+        output = open(output.name, 'rd')
+        response.write(output.read())
+    return response

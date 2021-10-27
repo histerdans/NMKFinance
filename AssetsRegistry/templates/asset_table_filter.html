@@ -1,0 +1,70 @@
+{% csrf_token %}
+{% for obj in objs %}
+						<tr>
+							
+							<td class="center">
+								<label>
+									<input type="checkbox" />
+									<span class="lbl"></span>
+								</label>
+							</td>
+							<td >{{obj.YearNow}}</td>
+							<td >{{obj.QuarterNow}}</td>
+							<td >{{obj.item_category_asset}}</td>
+							<td   >{{obj.item_name_asset}}</td>
+							<td >{{obj.notes}}</td>
+
+
+							<td class="badge badge-inverse ">
+								<span class="money">{{obj.Amount}}</span>
+							</td>
+
+
+
+							<td class="td-actions">
+								<div class="hidden-phone visible-desktop action-buttons">
+									
+									<a class="green" href="{% url 'AssetsRegistry:update_item_url' obj.id%}">
+										<i class="icon-pencil bigger-130"></i>
+									</a>
+
+									<a class="red delete-link" href="{% url 'AssetsRegistry:delete_item_url' obj.id %}"
+									id="delete-item">
+									<i class="icon-trash bigger-130"></i>
+								</a>
+							</div>
+
+							<div class="hidden-desktop visible-phone">
+								<div class="inline position-relative">
+									<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+										<i class="icon-caret-down icon-only bigger-120"></i>
+									</button>
+
+									<ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-close">
+										
+										<li>
+											<a href="{% url 'AssetsRegistry:update_item_url' obj.id %}" class="tooltip-success" data-rel="tooltip" title="Edit">
+												<span class="green">
+													<i class="icon-edit bigger-120"></i>
+												</span>
+											</a>
+										</li>
+
+										<li>
+											<a 
+											id="delete-item" href="{% url 'AssetsRegistry:delete_item_url' obj.id %}" class="tooltip-error" data-rel="tooltip" title="Delete">
+											<span class="red">
+												<i class="icon-trash bigger-120"></i>
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						
+
+					</td>
+				</tr>
+				{% endfor %}
+

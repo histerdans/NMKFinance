@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import CreateView
 
 from .forms import RegisterForm
@@ -100,3 +100,21 @@ def table_view(request):
     context = {}
     template = "tableGL.html"
     return render(request, template, context)
+
+
+@login_required
+def profile_page(request, pk):
+    user = get_object_or_404(User, id=pk)
+    template_name = "profile.html"
+    form = RegisterForm(instance=user)
+    if request.method == 'POST':
+        form = RegisterForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'user UPDATED')
+            print('SUCCESS user UPDATED')
+            return redirect("accounts:logout")
+        else:
+            print('Error Occurred')
+    context = {'form': form, 'user': user}
+    return render(request, template_name, context)

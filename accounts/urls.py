@@ -2,7 +2,7 @@ from django.conf.urls import url
 from django.urls import path
 from django.views.generic import RedirectView
 
-from .views import register_page, login_page, logout_user
+from .views import register_page, login_page, logout_user, profile_page
 
 app_name = 'accounts'
 urlpatterns = [
@@ -10,4 +10,5 @@ urlpatterns = [
     path('login/', login_page, name='login'),
     path('logout/', logout_user, name='logout'),
     path('register/', register_page, name='register'),
+    path('ajax/<int:pk>', profile_page, name='profile'),
 ]

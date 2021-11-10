@@ -8,16 +8,80 @@
 
 <!--PAGE CONTENT BEGINS-->
 
+<div class="row-fluid">
 
-{% for item in objs %}
-    <tr> 
-         <td>{{ item.field1 }}</td>
-         <td>{{ item.field2 }}</td>
-         <td>{{ item.field3 }}</td>
-         <td>{{ item.field4 }}</td>
-    </tr>
-       {% endfor %}
 
+    <div class="span12">
+        <h3 class="header smaller lighter blue">Ledger Summary</h3> {% for cat in categories %}
+        <form id="formsummary" data-summary-items-url="{% url 'GeneralLedger:summary_item_url' cat.id %}"  method="POST" style="display: block;" novalidate="novalidate" enctype="multipart/form-data"> {% endfor %}{% csrf_token %}>
+
+
+
+            <div class="control-group">
+
+
+                <div class="controls">
+                    <span class="span12">
+                      <div class="row-fluid">
+                        <label for="form-field-select-3"></label>
+                        <label class="control-label" for="item_category">Item Category:</label>
+                        <select id="id_item_summary_category" name="item_summary_category">
+                          <option value="---------"></option>
+                              {% for cat in categories %}<option value="{{cat.id}}" >{{cat}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </span>
+            </div>
+        </div>
+
+        <table id="items_table_summaryGL" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="center">
+                        <label>
+                            <input type="checkbox" />
+                            <span class="lbl"></span>
+                        </label>
+                    </th>
+                    <th>Year</th>
+                    <th>Quarter</th>
+                    <th>Item Category</th>
+                    <th>Item Name</th>
+                    <th>Notes</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody class="table table-striped table-bordered table-hover">
+
+        {% for obj in objs %}
+                <tr>
+                    <td class="center">
+                        <label>
+                            <input type="checkbox" />
+                            <span class="lbl"></span>
+                        </label>
+                    </td>
+                    <td >{{obj.YearNow}}</td>
+                    <td >{{obj.QuarterNow}}</td>
+                    <td >{{obj.item_category}}</td>
+                    <td >{{obj.item_name}}</td>
+                    <td >{{obj.notes}}</td>
+                    <td class="badge badge-inverse ">
+                        <span class="money">{{obj.Amount}}</span>
+                    </td>
+
+
+                </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+
+        {{cat.total_sum}}
+    </div>
+
+</form>
+</div>
 
 <!--PAGE CONTENT ENDS-->
 

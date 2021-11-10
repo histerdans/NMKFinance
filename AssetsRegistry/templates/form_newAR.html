@@ -14,159 +14,148 @@
 	Add Records
 </div>
 <div class="hr hr-dotted"></div>
-		<fieldset>
-			<form class="form-horizontal" id="addARForm" action="" data-items-url_asset="{% url 'AssetsRegistry:ajax_load_items_asset' %}" data-items-url_dept_asset="{% url 'AssetsRegistry:ajax_load_items_dept_asset' %}"  method="POST" style="display: block;" novalidate="novalidate" enctype="multipart/form-data">{% csrf_token %}
+<fieldset>
+ <form class="form-horizontal" id="addARForm" name="addARForm" 
+ action=""   
+ data_url_dept="{% url 'AssetsRegistry:ajax_load_items_dept_url' %}"
+ data_url_sta="{% url 'AssetsRegistry:ajax_load_items_sta_url' %}"  
+ data_url_item="{% url 'AssetsRegistry:ajax_load_items_item_url' %}"  
+ data-table-items-url="{% url 'AssetsRegistry:ajax_table_load_items_asset' %}"
+ method="POST" 
+ style="display: block;" 
+ novalidate="novalidate" 
+ enctype="multipart/form-data">
+ {% csrf_token %}
 
-				<div class="hr hr-dotted"></div>
-				<div class="control-group">
-					<label class="control-label" for="YearNow">Year Now:</label>
+ <div class="hr hr-dotted"></div>
+ <div class="control-group">
+   <label class="control-label" for="YearNow">Year Now:</label>
 
-					<div class="controls">
-							{{form.YearNow}}
-					
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="QuarterNow">Quarter Now:</label>
+   <div class="controls">
+     {{form.YearNow}}
+ </div>
+</div>
+<div class="control-group">
+   <label class="control-label" for="QuarterNow">Quarter Now:</label>
 
-					<div class="controls">
-							{{form.QuarterNow}}
-					
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="item_category_asset">Item Code & Category :</label>
+   <div class="controls">
+     {{form.QuarterNow}}
+ </div>
+</div>
+<div class="control-group">
+   <label class="control-label" for="item_account">Item Account Code & Name :</label>
 
-					<div class="controls">
-							{{form.item_category_asset}}
-						
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="item_name_asset">Item Code & Name:</label>
+   <div class="controls">
+     {{form.item_account}}
+ </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="item_department">Item Department Code & Name:</label>
 
-					<div class="controls">
-							{{form.item_name_asset}}
-					
-					</div>
-				</div>
-                <div class="control-group">
-                    <label class="control-label" for="item_name_asset">Item Type:</label>
-
-                    <div class="controls">
-                            {{form.item_name_type}}
-                    
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="depreciation_type">Item Depreciation Type:</label>
-
-                    <div class="controls">
-                            {{form.depreciation_type}}
-                    
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="depreciation_rate">Item Depreciation Rate:</label>
-
-                    <div class="controls">
-                            {{form.depreciation_rate}}
-                    
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="depreciation_rate">Item Depreciation Date:</label>
-
-                    <div class="controls">
-                            {{form.depreciation_date}}
-                    
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label" for="item_department">Item Department:</label>
-
-                    <div class="controls">
-                            {{form.item_department}}
-                    
-                    </div>
-                   
-                </div> <div class="control-group">
-                    <label class="control-label" for="items_dept_asset">Item Department Asset:</label>
-
-                    <div class="controls">
-                            {{form.items_dept_asset}}
-                    
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="item_serial_no">Item Serial No.:</label>
-
-                    <div class="controls">
-                            {{form.item_serial_no}}
-                    
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="item_make_model">Item Make & Model:</label>
-
-                    <div class="controls">
-                            {{form.item_make_model}}
-                    
-                    </div>
-                </div>
-				<div class="control-group">
-					<label class="control-label" for="notes">Notes:</label>
-
-					<div class="controls">
-							{{form.notes}}
-					
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="Amount">Cost:</label>
-
-					<div class="controls">
-							{{form.Amount}}
-						
-					</div>
-				</div>
-
-
-
-
-				<label class="control-group center">
-					<div class=" alert alert-error center">{{form.errors}}</div>
-					{% for message in messages %}
-					<div class="alert alert-success center">{{message}}</div>
-					{% endfor %}
-
-				</label>
-				<div class="hr hr-dotted"></div>
-				<div class="form-actions">
-
-					<div class="clearfix">
-						<button class="btn btn-info" onclick="return true;"  type="submit" id="submit" onclick="return true;">
-							<i class="icon-ok bigger-110"></i>
-							Submit
-						</button>
-
-						&nbsp; &nbsp; &nbsp;
-						<button class="btn" onclick="return true;"  type="reset" id="reset" >
-							<i class="icon-undo bigger-110"></i>
-							Reset
-						</button>
-					</div>
-				</div>
-
-			</form>
-        
-    <h3 class="header smaller lighter blue">jQuery dataTables</h3>
-    <div class="table-header">
-        Results for "Latest Registered Domains"
+    <div class="controls">
+        {{form.item_department}}                    
     </div>
 
-    <table id="items_tableAR" class="table table-striped table-bordered table-hover" data-table-items-url="{% url 'AssetsRegistry:ajax_table_load_items_asset' %}" >
+</div>
+<div class="control-group">
+   <label class="control-label" for="item_station">Item Station Code & Name:</label>
+
+   <div class="controls">
+     {{form.item_station}}
+ </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="item_name_asset">Item Code & Name:</label>
+
+    <div class="controls">
+        {{form.item_name_asset}}                    
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="depreciation_type">Item Depreciation Type:</label>
+
+    <div class="controls">
+        {{form.depreciation_type}}                    
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="depreciation_rate">Item Depreciation Rate:</label>
+
+    <div class="controls">
+        {{form.depreciation_rate}}                    
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="depreciation_rate">Item Depreciation Date:</label>
+
+    <div class="controls">
+        {{form.depreciation_date}}                    
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="item_serial_no">Item Serial No.:</label>
+
+    <div class="controls">
+        {{form.item_serial_no}}                    
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="item_make_model">Item Make & Model:</label>
+
+    <div class="controls">
+        {{form.item_make_model}}                    
+    </div>
+</div>
+<div class="control-group">
+   <label class="control-label" for="item_description">Description:</label>
+
+   <div class="controls">
+     {{form.item_description}}					
+ </div>
+</div>
+<div class="control-group">
+   <label class="control-label" for="item_cost">Cost:</label>
+
+   <div class="controls">
+     {{form.item_cost}}						
+ </div>
+</div>
+
+
+
+
+<label class="control-group center">
+   <div class=" alert alert-error center">{{form.errors}}</div>
+   {% for message in messages %}
+   <div class="alert alert-success center">{{message}}</div>
+   {% endfor %}
+
+</label>
+<div class="hr hr-dotted"></div>
+<div class="form-actions">
+
+   <div class="clearfix">
+      <button class="btn btn-info" onclick="return true;"  type="submit" id="submit" onclick="return true;">
+         <i class="icon-ok bigger-110"></i>
+         Submit
+     </button>
+
+     &nbsp; &nbsp; &nbsp;
+     <button class="btn" onclick="return true;"  type="reset" id="reset" >
+         <i class="icon-undo bigger-110"></i>
+         Reset
+     </button>
+ </div>
+</div>
+
+</form>
+<div class="row-fluid ">
+    <h3 class="header smaller lighter blue">Assets TableData</h3>
+    <div class="table-header">
+        Results for "Assets Registry"
+    </div>
+
+    <table id="items_tableAR" class="table span12 table-striped table-bordered table-hover"  >
         <thead>
             <tr>
                 <th class="center">
@@ -177,15 +166,16 @@
                 </th>
                 <th>Year</th>
                 <th>Quarter</th>
-                <th>Item Category</th>
+                <th>Item Account</th>
+                <th>Item Department</th>
+                <th>Item Station</th>
                 <th>Item Name</th>
-                <th>Item Type</th>
                 <th>Depreciation Type</th>
                 <th>Depreciation Rate</th>
-                <th>Item Department</th>
+                <th>Depreciation Date</th>
                 <th>Item Serial No.</th>
                 <th>Item Make & Model</th>
-                <th>Notes</th>
+                <th>Description</th>
                 <th>Cost</th>
                 <th>Actions</th>
             </tr>
@@ -194,7 +184,7 @@
         <tbody>
             {% for obj in objs %}
             <tr>
-                
+
                 <td class="center">
                     <label>
                         <input type="checkbox" />
@@ -203,19 +193,20 @@
                 </td>
                 <td >{{obj.YearNow}}</td>
                 <td >{{obj.QuarterNow}}</td>
-                <td >{{obj.item_category_asset}}</td>
+                <td >{{obj.item_account}}</td>
+                <td >{{obj.item_department}}</td>
+                <td >{{obj.item_station}}</td>
                 <td >{{obj.item_name_asset}}</td>
-                <td >{{obj.item_name_type}}</td>
                 <td >{{obj.depreciation_type}}</td>
                 <td >{{obj.depreciation_rate}}</td>
-                <td >{{obj.item_department}}</td>
+                <td >{{obj.depreciation_date}}</td>
                 <td >{{obj.item_serial_no}}</td>
                 <td >{{obj.item_make_model}}</td>
-                <td >{{obj.notes}}</td>
+                <td >{{obj.item_description}}</td>
 
 
                 <td class="badge badge-inverse ">
-                    <span class="money">{{obj.Amount}}</span>
+                    <span class="money">{{obj.item_cost}}</span>
                 </td>
                 <td class="td-actions">
                     <div class="hidden-phone visible-desktop action-buttons">
@@ -271,7 +262,9 @@
         </tbody>
         {% endif %}
     </table>
+</div>
 
+<li class="num">Totals:{{amt}}</li>
 </fieldset><!--/widget-body-->
 
 <!--PAGE CONTENT ENDS-->

@@ -256,4 +256,4 @@
             }
         });
     }
-})(jQuery, window, document);
+});

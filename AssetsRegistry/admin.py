@@ -1,9 +1,8 @@
 from django.contrib import admin
-from .models import AssetsRegistry, Category, Item, ItemType, Department, DepartmentItem
+from .models import AssetsRegistry, Department, Account, Station, Item
 
 admin.site.register(AssetsRegistry)
-admin.site.register(Category)
-admin.site.register(Item)
-admin.site.register(ItemType)
+admin.site.register(Account)
 admin.site.register(Department)
-admin.site.register(DepartmentItem)
+admin.site.register(Station)
+admin.site.register(Item)

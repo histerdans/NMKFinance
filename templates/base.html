@@ -148,7 +148,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="#">
+								<a href="{% url 'GeneralLedger:newDeptGL' %}">
 									<i class="icon-double-angle-right"></i>
 									Add New Department Ledger
 								</a>
@@ -294,11 +294,6 @@
 							{% endblock %}
 
 
-			<div class="hr hr-18 solid hr-double"></div>
-
-
-			<div class="hr hr-18 solid hr-double"></div>
-
 						<!--PAGE CONTENT ENDS-->
 					</div><!--/.span-->
 				</div><!--/.row-fluid-->
@@ -324,7 +319,7 @@
 	</script>
 	<script type="text/javascript">
 		$("#id_item_category").change(function () {
-      var url = $("#addGLForm").attr("data-items-url");  // get the url of the `load_cities`view
+      var url = $("#addGLForm").attr("data-items-url");  // get the url of the `load_cities` view
       var categoryId = $(this).val();  // get the selected country ID from the HTML input
 
       $.ajax({                       // initialize an AJAX request
@@ -338,17 +333,17 @@
       });
 
     });
-		$("#id_item_category_asset").change(function () {
-      var url = $("#addARForm").attr("data-items-url_asset");  // get the url of the `load_cities` view
-      var categoryId_asset = $(this).val();  // get the selected country ID from the HTML input
+    $("#id_item_dept_category").change(function () {
+      var url = $("#addDeptGLForm").attr("data-items-url");  // get the url of the `load_cities` view
+      var deptcategoryId = $(this).val();  // get the selected country ID from the HTML input
 
       $.ajax({                       // initialize an AJAX request
         url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
         data: {
-          'item_category_asset': categoryId_asset       // add the country id to the GET parameters
+          'item_dept_category': deptcategoryId       // add the country id to the GET parameters
         },
         success: function (data) {   // `data` is the return of the `load_cities` view function
-          $("#id_item_name_asset").html(data);  // replace the contents of the city input with the data that came from the server
+          $("#id_item_dept_name").html(data);  // replace the contents of the city input with the data that came from the server
         }
       });
 
@@ -368,21 +363,88 @@
       });
 
     });
-		$("#id_item_department").change(function () {
-      var url = $("#addARForm").attr("data-items-url_dept_asset");  // get the url of the `load_cities` view
-      var deptId_asset = $(this).val();  // get the selected country ID from the HTML input
+    $("#id_item_summary_category").change(function () {
+      var url = $("#formsummary").attr("data-summary-items-url");  // get the url of the `load_cities` view
+      var categoryId = $(this).val();  // get the selected country ID from the HTML input
 
       $.ajax({                       // initialize an AJAX request
         url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
         data: {
-          'item_department': deptId_asset       // add the country id to the GET parameters
+          'item_category': categoryId       // add the country id to the GET parameters
         },
         success: function (data) {   // `data` is the return of the `load_cities` view function
-          $("#id_items_dept_asset").html(data);  // replace the contents of the city input with the data that came from the server
+          $("#items_table_summaryGL").html(data);  // replace the contents of the city input with the data that came from the server
         }
       });
 
     });
+
+
+  </script>
+  <script type="text/javascript">
+  	
+	$("#id_item_account").change(function () {
+      var url = $("#addARForm").attr("data_url_dept");  // get the url of the `load_cities` view
+      var accountId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'item_account': accountId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_item_department").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+		$("#id_item_department").change(function () {
+      var url = $("#addARForm").attr("data_url_sta");  // get the url of the `load_cities` view
+      var departmentId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'item_department': departmentId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_item_station").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+		$("#id_item_station").change(function () {
+      var url = $("#addARForm").attr("data_url_item");  // get the url of the `load_cities` view
+      var stationId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'item_station': stationId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_item_name_asset").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+    $("#id_item_department_gl").change(function () {
+      var url = $("#addDeptGLForm").attr("data_url_sta");  // get the url of the `load_cities` view
+      var departmentId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'item_department_gl': departmentId       // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_item_station_gl").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+	
+			
   </script>
 
   <script type="text/javascript">
@@ -631,7 +693,7 @@
 				var oTable1 = $('#items_tableAR').dataTable( {
 				"aoColumns": [
 			      { "bSortable": false },
-			      null, null,null, null, null, null, null, null, null, null,  null, null, 
+			      null, null,null, null, null, null, null, null, null, null,  null, null,  null, 
 				  { "bSortable": false }
 				] } );
 				
@@ -661,6 +723,44 @@
 					return 'left';
 				}
 			})
+
+		$(function() {
+				var oTable1 = $('#items_table_summaryGL').dataTable( {
+				"aoColumns": [
+			      { "bSortable": false },
+			      null, null,null, null, null,
+				  { "bSortable": false }
+				] } );
+				
+				
+				$('table th input:checkbox').on('click' , function(){
+					var that = this;
+					$(this).closest('table').find('tr > td:first-child input:checkbox')
+					.each(function(){
+						this.checked = that.checked;
+						$(this).closest('tr').toggleClass('selected');
+					});
+						
+				});
+			
+			
+				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+				function tooltip_placement(context, source) {
+					var $source = $(source);
+					var $parent = $source.closest('table')
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+			
+					var off2 = $source.offset();
+					var w2 = $source.width();
+			
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+					return 'left';
+				}
+			})
+		$('#accordion2').on('hide', function (e) {
+					$(e.target).prev().children(0).addClass('collapsed');
+				})
 		</script>
 
 

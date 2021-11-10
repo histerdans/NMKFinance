@@ -48,7 +48,6 @@
 				<th>Year</th>
 				<th>Quarter</th>
 				<th>Item Category</th>
-
 				<th>Item Name</th>
 				<th>Notes</th>
 
@@ -60,20 +59,17 @@
 		<tbody>
 			{% for obj in objs %}
 			<tr>
-
 				<td class="center">
 					<label>
 						<input type="checkbox" />
 						<span class="lbl"></span>
 					</label>
 				</td>
-				<td >{{obj.YearNow}}</td>
-				<td >{{obj.QuarterNow}}</td>
-				<td >{{obj.item_category}}</td>
-				<td   >{{obj.item_name}}</td>
-				<td >{{obj.notes}}</td>
-
-
+				<td>{{obj.YearNow}}</td>
+				<td>{{obj.QuarterNow}}</td>
+				<td>{{obj.item_category}}</td>
+				<td>{{obj.item_name}}</td>
+				<td>{{obj.notes}}</td>
 				<td class="badge badge-inverse ">
 					<span class="money">{{obj.Amount}}</span>
 				</td>

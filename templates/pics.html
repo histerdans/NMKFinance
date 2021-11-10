@@ -147,7 +147,7 @@ a.captionOrange:hover
             _CaptionTransitions["RTTS|R"] = { $Duration: 900, x: -0.6, $Zoom: 1, $Rotate: 1, $Easing: { $Left: $JssorEasing$.$EaseInQuad, $Zoom: $JssorEasing$.$EaseInQuad, $Rotate: $JssorEasing$.$EaseInQuad, $Opacity: $JssorEasing$.$EaseOutQuad }, $Opacity: 2, $Round: { $Rotate: 1.2} };
             _CaptionTransitions["RTTS|T"] = { $Duration: 900, y: 0.6, $Zoom: 1, $Rotate: 1, $Easing: { $Top: $JssorEasing$.$EaseInQuad, $Zoom: $JssorEasing$.$EaseInQuad, $Rotate: $JssorEasing$.$EaseInQuad, $Opacity: $JssorEasing$.$EaseOutQuad }, $Opacity: 2, $Round: { $Rotate: 1.2} };
 
-            _CaptionTransitions["DDGDANCE|RB"] = { $Duration: 11300, x: -0.3, y: -0.3, $Zoom: 1, $Easing: { $Left: $JssorEasing$.$EaseInJump, $Top: $JssorEasing$.$EaseInJump, $Zoom: $JssorEasing$.$EaseOutQuad }, $Opacity: 2, $During: { $Left: [0, 0.8], $Top: [0, 0.8] }, $Round: { $Left: 0.8, $Top: 2.5} };
+            _CaptionTransitions["DDGDANCE|RB"] = { $Duration: 1300, x: -0.3, y: -0.3, $Zoom: 1, $Easing: { $Left: $JssorEasing$.$EaseInJump, $Top: $JssorEasing$.$EaseInJump, $Zoom: $JssorEasing$.$EaseOutQuad }, $Opacity: 2, $During: { $Left: [0, 0.8], $Top: [0, 0.8] }, $Round: { $Left: 0.8, $Top: 2.5} };
             _CaptionTransitions["ZMF|10"] = { $Duration: 900, $Zoom: 11, $Easing: { $Zoom: $JssorEasing$.$EaseInExpo, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 };
             _CaptionTransitions["DDG|TR"] = { $Duration: 1200, x: -0.3, y: 0.3, $Zoom: 1, $Easing: { $Left: $JssorEasing$.$EaseInJump, $Top: $JssorEasing$.$EaseInJump }, $Opacity: 2, $During: { $Left: [0, 0.8], $Top: [0, 0.8] }, $Round: { $Left: 0.8, $Top: 0.8} };
 
@@ -216,7 +216,7 @@ a.captionOrange:hover
             function ScaleSlider() {
                 var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
                 if (parentWidth)
-                    jssor_slider1.$ScaleWidth(Math.max(Math.min(parentWidth, 1300), 700));
+                    jssor_slider1.$ScaleWidth(Math.max(Math.min(parentWidth, 1280), 768));
                 else
                     $Jssor$.$Delay(ScaleSlider, 50);
             }
@@ -231,8 +231,8 @@ a.captionOrange:hover
     </script>
     <!-- Jssor Slider Begin -->
     <!-- You can move inline styles to css file or css block. -->
-    <div id="slider1_container" style="position: relative; width: 1300px;
-    height : 700px; overflow: hidden;" class="text-center">
+    <div id="slider1_container" style="position: relative; width: 1280px;
+    height : 768px;" class="col-6 .col-sm-6 .col-lg-12">
 
     <!-- Loading Screen -->
     <div u="loading" style="position: absolute; top: 0px; left: 0px;align-content: center;">
@@ -247,80 +247,82 @@ a.captionOrange:hover
 </div>
 
 <!-- Slides Container -->
-<div u="slides" style="cursor: move; position: absolute; top: 0px; width: 1300px; height: 700px;
-overflow: hidden;" class="text-center">
+<div u="slides" style="cursor: move; position: absolute; top: 0px; width: 1280px; height: 768px;
+overflow: hidden;" class="col-6 .col-sm-6 .col-lg-12">
 
-<div>
+<div class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/21.jpg' %}" style=""/>
     <div u=caption t="CLIP|TB" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
   </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/22.jpg'%}" style=""/>
-
+ <div u=caption t="CLIP|TB" du="1300" style="position:absolute;top:500px;text-align: center;">
+      <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
+  </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/21.jpg' %}" style=""/>
     <div u=caption t="RTT|10" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
   </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/22.jpg' %}" style=""/>
     <div u=caption t="T|IE*IE" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
   </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/21.jpg' %}" style="" />
     <div u=caption t="CLIP|LR" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System.</span> </label></div></a>
   </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/22.jpg' %}" style=""/>
     <div u=caption t="RTTS|R" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
   </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/21.jpg' %}" style=""/>
     <div u=caption t="DDGDANCE|RB" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System.</span> </label></div></a>
   </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/22.jpg' %}" style=""/>
     <div u=caption t="ZMF|10" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
   </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/21.jpg' %}" style=""/>
     <div u=caption t="WV|B" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
   </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/22.jpg' %}" style=""/>
     <div u=caption t="FADE" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
   </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/21.jpg' %}" style=""/>
     <div u=caption t="FLTTRWN|LT" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
   </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/22.jpg' %}" style=""/>
     <div u=caption t="ATTACK|BR" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
   </div>
 </div>
-<div><div u=caption t="TORTUOUS|VB" du="1300" style="position:absolute;top:500px;text-align: center;">
+<div  class="col-6 .col-sm-6 .col-lg-12"><div u=caption t="TORTUOUS|VB" du="1300" style="position:absolute;top:500px;text-align: center;">
     <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >CWelcome to NMK Finance System</span> </label></div></a>
 </div>
 <img u="image" src="{% static 'Assets/images/21.jpg' %}" style=""/>
@@ -328,13 +330,13 @@ overflow: hidden;" class="text-center">
     <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
 </div>
 </div>
-<div>
+<div  class="col-6 .col-sm-6 .col-lg-12">
     <img u="image" src="{% static 'Assets/images/21.jpg' %}" style=""/>
     <div u=caption t="WV|B" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>
   </div>
 </div>
-<div>
+<div class="col-6 .col-sm-6 .col-lg-12">  
     <img u="image" src="{% static 'Assets/images/22.jpg '%}" style=""/>
     <div u=caption t="LISTH|R" du="1300" style="position:absolute;top:500px;text-align: center;">
       <a href="" > <div style="color: #fff;"> <label style=" background-color: rgba(0, 0, 0, 0.4); border-radius: 5px; padding: 3px; font-size: 18px;"><span >Welcome to NMK Finance System</span> </label></div></a>

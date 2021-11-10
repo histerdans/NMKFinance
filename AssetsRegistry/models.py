@@ -32,18 +32,19 @@ class AssetsManager(models.Manager):
         return self.get_queryset().search(query)
 
 
-class Category(models.Model):
+class Account(models.Model):
     name = models.CharField(max_length=130)
     objects = AssetsManager()
 
     class Meta:
-        verbose_name_plural = 'Categories'
+        verbose_name_plural = 'Accounts'
 
     def __str__(self):
         return self.name
 
 
 class Department(models.Model):
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
     name = models.CharField(max_length=130)
     objects = AssetsManager()
 
@@ -54,19 +55,20 @@ class Department(models.Model):
         return self.name
 
 
-class ItemType(models.Model):
+class Station(models.Model):
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
     name = models.CharField(max_length=130)
     objects = AssetsManager()
 
     class Meta:
-        verbose_name_plural = 'Types'
+        verbose_name_plural = 'Stations'
 
     def __str__(self):
         return self.name
 
 
 class Item(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    station = models.ForeignKey(Station, on_delete=models.CASCADE)
     name = models.CharField(max_length=130)
     objects = AssetsManager()
 
@@ -77,28 +79,15 @@ class Item(models.Model):
         return self.name
 
 
-class DepartmentItem(models.Model):
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    name = models.CharField(max_length=130)
-    objects = AssetsManager()
-
-    class Meta:
-        verbose_name_plural = 'DepartmentsItems'
-
-    def __str__(self):
-        return self.name
-
-
 class AssetsRegistry(models.Model):
     slug_number = models.SlugField(blank=True, unique=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    item_category_asset = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    item_name_asset = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
-    item_name_type = models.ForeignKey(ItemType, on_delete=models.SET_NULL, null=True)
+    item_account = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True)
     item_department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True)
-    items_dept_asset = models.ForeignKey(DepartmentItem, on_delete=models.SET_NULL, null=True)
-    notes = models.TextField(blank=True, max_length=1250)
-    Amount = models.DecimalField(decimal_places=2, max_digits=20, default=0.00)
+    item_station = models.ForeignKey(Station, on_delete=models.SET_NULL, null=True)
+    item_name_asset = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
+    item_description = models.TextField(blank=True, max_length=1250)
+    item_cost = models.DecimalField(decimal_places=2, max_digits=20, default=0.00)
     YearNow = models.CharField(max_length=25, default='2023/2024')
     QuarterNow = models.CharField(max_length=25, default='Q1')
     depreciation_type = models.CharField(max_length=225)
@@ -128,7 +117,7 @@ class AssetsRegistry(models.Model):
 
     @property
     def sum_amount(self):
-        return Sum(self.Amount)
+        return Sum(self.item_cost)
 
     # def get_downloads(self):
     #    qs = self.productive_set.all()

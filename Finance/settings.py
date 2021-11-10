@@ -24,7 +24,7 @@ SECRET_KEY = 'cv!5erxve+30^tj%yrc2*ni_f1b0zhnk644kbdsd!4s-m2=6ya'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'nmkfinance.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'nmkfinance.herokuapp.com']
 
 # Application definition
 INSTALLED_APPS = [

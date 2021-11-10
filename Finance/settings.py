@@ -27,7 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'nmkfinance.herokuapp.com/']
 
 # Application definition
-
+DISABLE_COLLECTSTATIC=1
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

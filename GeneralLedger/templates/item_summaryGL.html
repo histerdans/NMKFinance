@@ -1,0 +1,23 @@
+{% extends 'templates/summaryGL.html' %}
+
+{% block summary_item %}
+<tr>
+    <td class="center">
+        <label>
+            <input type="checkbox" />
+            <span class="lbl"></span>
+        </label>
+    </td>
+    <td >{{cat.YearNow}}</td>
+    <td >{{cat.QuarterNow}}</td>
+    <td >{{cat.item_category}}</td>
+    <td   >{{cat.item_name}}</td>
+    <td >{{cat.notes}}</td>
+    <td class="badge badge-inverse ">
+        <span class="money">{{cat.Amount}}</span>
+    </td>
+
+
+</tr>
+
+ {% endblock %}
